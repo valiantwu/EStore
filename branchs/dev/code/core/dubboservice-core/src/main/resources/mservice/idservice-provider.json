@@ -1,0 +1,10 @@
+{
+  "definitions": [
+    {
+      "type": "service",
+      "interface": "org.woo.service.id.IdService",
+      "class": "org.woo.service.id.IdServiceImpl",
+      "timeout": "600000"
+    }
+  ]
+}

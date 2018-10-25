@@ -1,0 +1,89 @@
+group 'edge.woo'
+version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'war'
+
+//编译groovy代码时采用 UTF-8
+tasks.withType(GroovyCompile) {
+    groovyOptions.encoding = "MacRoman"
+}
+
+//编译JAVA文件时采用UTF-8
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+repositories {
+    mavenCentral()
+}
+def corelib = 'c:/evn-dev/mservice/corelib'
+def trd = 'c:/evn-dev/mservice/trd'
+def outputdir = 'c:/evn-dev/mservice/corelib'
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src/main/java"]
+        }
+        resources {
+            srcDirs = ["src/main/resources"]
+        }
+    }
+}
+println(configurations.compile.fileCollection { trd })
+
+dependencies {
+    compile fileTree(dir: trd, include: 'logback-classic*.jar')
+    compile fileTree(dir: trd, include: 'logback-core*.jar')
+    compile fileTree(dir: trd, include: 'logback-ext-spring*.jar')
+    compile fileTree(dir: trd, include: 'slf4j-api-*.jar')
+    compile fileTree(dir: trd, include: 'jul-to-slf4j-1.7.25.jar')
+    compile fileTree(dir: trd, include: 'commons-logging-1.2.jar')
+    compile fileTree(dir: trd, include: 'jul-to-slf4j*.jar')
+    compile fileTree(dir: trd, include: 'spring-web*.RELEASE.jar')
+    compile fileTree(dir: trd, include: 'spring-webmvc*.RELEASE.jar')
+    compile fileTree(dir: trd, include: 'spring-core*.RELEASE.jar')
+    compile fileTree(dir: trd, include: 'spring-beans*.RELEASE.jar')
+    compile fileTree(dir: trd, include: 'spring-aop*.RELEASE.jar')
+    compile fileTree(dir: trd, include: 'spring-expression*.RELEASE.jar')
+    compile fileTree(dir: trd, include: 'spring-context*.jar')
+    compile fileTree(dir: trd, include: 'dubbo*.jar')
+    compile fileTree(dir: trd, include: 'guava*.jar')
+    compile fileTree(dir: trd, include: 'javassist*GA.jar')
+    compile fileTree(dir: trd, include: 'netty-all-4.1.22.Final.jar')
+    compile fileTree(dir: trd, include: 'netty-3.10.5.Final.jar')
+    compile fileTree(dir: trd, include: 'curator-framework-4.0.0.jar')
+    compile fileTree(dir: trd, include: 'curator-client-4.0.0.jar')
+    compile fileTree(dir: trd, include: 'xmemcached*.jar')
+    compile fileTree(dir: trd, include: 'javax.servlet-api*.jar')
+    compile fileTree(dir: trd, include: 'zookeeper*.jar')
+    compile fileTree(dir: corelib, include: 'dubbo-demo-api*.jar')
+}
+task sourcesJar(type: Jar, dependsOn: build) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task copytolib(type: Copy, dependsOn: build) {
+    group 'build'
+    description '拷贝本工程构建jar包到lib'
+    from 'build/libs'
+    into corelib
+    exclude '*source*.jar'
+}
+
+
+task copyJarTodir(type: Copy) {
+    group 'build'
+    description '拷贝工程产生的build.jar到本地库'
+    from 'build/libs'
+    into corelib
+    exclude '**/*.class'
+}
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+test.ignoreFailures true

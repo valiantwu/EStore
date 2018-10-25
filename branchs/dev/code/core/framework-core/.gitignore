@@ -1,0 +1,9 @@
+/bin/
+out/
+.gradle/
+build/dependency-cache/
+build/tmp/compileJava/
+build/classes/
+/build/
+*.xml
+*.json

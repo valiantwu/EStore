@@ -1,0 +1,68 @@
+group 'edge.woo'
+version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+def corelib = 'C:/evn-dev/mservice/corelib'
+def trd = 'C:/evn-dev/mservice/trd'
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src/main/java"]
+        }
+        resources {
+            srcDirs = ["src/main/resources"]
+        }
+    }
+}
+println(configurations.compile.fileCollection { trd })
+
+dependencies {
+    compile fileTree(dir: corelib, include: 'dataentity*.jar')
+    compile fileTree(dir: corelib, include: 'ormentity*.jar')
+    compile fileTree(dir: trd, include: 'slf4j-api-*.jar')
+    compile fileTree(dir: trd, include: 'hibernate-jpa*.Final.jar')
+    compile fileTree(dir: trd, include: 'logback-classic-1.2.3.jar')
+    compile fileTree(dir: trd, include: 'logback-core-1.2.3.jar')
+    compile fileTree(dir: trd, include: 'jedis-*.jar')
+    compile fileTree(dir: trd, include: 'junit-*.jar')
+    compile fileTree(dir: trd, include: 'ojdbc8*.jar')
+    compile fileTree(dir: trd, include: 'mybatis-3.4.5.jar')
+    compile fileTree(dir: trd, include: 'hamcrest-core-*.jar')
+//    compile fileTree(dir: trd, include: 'mysql-connector-java-*.jar')
+    compile fileTree(dir: trd, include: 'commons-dbcp*.jar')
+    compile fileTree(dir: trd, include: 'commons-pool-*.jar')
+    compile fileTree(dir: trd, include: 'spring-context-*.RELEASE.jar')
+}
+task sourcesJar(type: Jar, dependsOn: build) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task copytolib(type: Copy, dependsOn: build) {
+    group 'build'
+    description '拷贝本工程构建jar包到lib'
+    from 'build/libs'
+    into corelib
+    exclude '*source*.jar'
+}
+
+
+task copyJarTodir(type: Copy) {
+    group 'build'
+    description '拷贝工程产生的build.jar到本地库'
+    from 'build/libs'
+    into corelib
+    exclude '**/*.class'
+}
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+test.ignoreFailures true

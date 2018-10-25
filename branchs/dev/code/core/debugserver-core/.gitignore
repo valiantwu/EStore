@@ -1,0 +1,12 @@
+/bin/
+out/
+.gradle/
+build/dependency-cache/
+build/tmp/compileJava/
+build/classes/
+*.iml
+.idea/
+*.java
+*.xml
+*.json
+src/

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang='pl' class="pixel-ratio-1">
+<head>
+    <title>e之家相册</title>
+    <meta name="description" content="Ultralekka responsywna galeria jQuery">
+    <meta name="keywords" content="ma5gallery, galeria html5, galeria jquery">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui, user-scalable=no">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/??sm.min.css,sm-extend.min.css">
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/??sm.min.js,sm-extend.min.js' charset='utf-8'></script>
+</head>
+<body>
+<div class="page-group">
+    <!-- 你的html代码 -->
+    <div class="page page-current" id="page-1492972577022">
+        <header class="bar bar-nav">
+            <a class="button button-link button-nav pull-left" href="#">
+                <span class="icon icon-left"></span>
+                返回
+            </a>
+            <h1 class="title"></h1>
+            <a class="button button-nav pull-righ">登录</a>
+        </header>
+        <nav class="bar bar-tab">
+            <a class="tab-item external active" href="#" id="index">
+                <span class="icon icon-home">首页</span>
+                <span class="tab-label"></span>
+            </a>
+            <a class="tab-item external" href="#" id="me" disabled="disabled">
+                <span class="icon icon-picture"></span>
+                <span class="tab-label">群组</span>
+            </a>
+            <a class="tab-item external" href="#" id="setting" disabled="disabled">
+                <span class="icon icon-settings"></span>
+                <span class="tab-label">设置</span>
+            </a>
+        </nav>
+        <div class="content native-scroll">
+            <!-- 这里是页面内容区 -->
+            <div class="page-index">
+            </div>
+        </div>
+        <hr/>
+        <!-- content应该拥有"pull-to-refresh-content"类,表示启用下拉刷新 -->
+        <div class="content pull-to-refresh-content" data-ptr-distance="55">
+            <!-- 默认的下拉刷新层 -->
+            <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+            </div>
+            <!-- 下面是正文 -->
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-header">card</div>
+                    <div class="card-content">
+                        <div class="card-content-inner">
+                            这里是第1个card，下拉刷新会出现第2个card。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <!--<div class="content">
+            <div class="list-block">
+                <ul>
+                    &lt;!&ndash; Text inputs &ndash;&gt;
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">姓名</div>
+                                <div class="item-input">
+                                    <input type="text" placeholder="姓名">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-email"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">邮箱</div>
+                                <div class="item-input">
+                                    <input type="email" placeholder="E-mail">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-password"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">密码</div>
+                                <div class="item-input">
+                                    <input type="password" placeholder="密码" class="">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-gender"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">性别</div>
+                                <div class="item-input">
+                                    <select>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    &lt;!&ndash; Date &ndash;&gt;
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">生日</div>
+                                <div class="item-input">
+                                    <input type="date" placeholder="生日" value="2014-04-30">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    &lt;!&ndash; Switch (Checkbox) &ndash;&gt;
+                    &lt;!&ndash;<li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-toggle"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">开关</div>
+                                <div class="item-input">
+                                    <label class="label-switch">
+                                        <input type="checkbox">
+                                        <div class="checkbox"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="align-top">
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-comment"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">文本域</div>
+                                <div class="item-input">
+                                    <textarea></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </li>&ndash;&gt;
+                </ul>
+            </div>
+            <div class="content-block">
+                <div class="row">
+                    <div class="col-50"><a href="#" class="button button-big button-fill button-danger">取消</a></div>
+                    <div class="col-50"><a href="#" class="button button-big button-fill button-success">提交</a></div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div class="content">
+            <div class="list-block">
+                <ul>
+                    &lt;!&ndash; Text inputs &ndash;&gt;
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">用户名</div>
+                                <div class="item-input">
+                                    <input type="text" placeholder="用户名/邮箱">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-password"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">密码</div>
+                                <div class="item-input">
+                                    <input type="password" placeholder="密码" class="">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    &lt;!&ndash; Switch (Checkbox) &ndash;&gt;
+                    &lt;!&ndash;<li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-toggle"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">开关</div>
+                                <div class="item-input">
+                                    <label class="label-switch">
+                                        <input type="checkbox">
+                                        <div class="checkbox"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="align-top">
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-comment"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">文本域</div>
+                                <div class="item-input">
+                                    <textarea></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </li>&ndash;&gt;
+                </ul>
+            </div>
+            <div class="content-block">
+                <div class="row">
+                    <div class="col-50"><a href="#" class="button button-big button-fill button-danger">登录</a></div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+    <hr>
+    <div class="panel panel-left panel-reveal">
+        <div class="content-block">
+            <p>这是一个侧栏</p>
+            <p></p>
+            <!-- Click on link with "close-panel" class will close panel -->
+            <p><a href="#" class="close-panel">关闭</a></p>
+        </div>
+    </div>
+    <div class="panel panel-right panel-cover">
+        <div class="content-block">
+            <p>这是右侧栏，panel-cover模式</p>
+            <p></p>
+            <!-- Click on link with "close-panel" class will close panel -->
+            <p><a href="#" class="close-panel">关闭</a></p>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $.config = {
+        autoInit: false
+    };
+    $.init();
+    $(document).on('refresh', '.pull-to-refresh-content',function(e) {
+        // 模拟2s的加载过程
+        setTimeout(function() {
+            var cardNumber = $(e.target).find('.card').length + 1;
+            var cardHTML = '<div class="card">' +
+                '<div class="card-header">card'+cardNumber+'</div>' +
+                '<div class="card-content">' +
+                '<div class="card-content-inner">' +
+                '这里是第' + cardNumber + '个card，下拉刷新会出现第' + (cardNumber + 1) + '个card。' +
+                '</div>' +
+                '</div>' +
+                '</div>';
+
+            $(e.target).find('.card-container').prepend(cardHTML);
+            // 加载完毕需要重置
+            $.pullToRefreshDone('.pull-to-refresh-content');
+        }, 2000);
+    });
+    $(function() {
+        $(".content").scroller({
+            type: 'js'
+        });
+    });
+    /*=== 默认为 standalone ===*/
+    $(function(){
+        /*=== 默认为 standalone ===*/
+        var myPhotoBrowserStandalone = $.photoBrowser({
+            photos : [
+                '//img.alicdn.com/tps/i3/TB1kt4wHVXXXXb_XVXX0HY8HXXX-1024-1024.jpeg',
+                '//img.alicdn.com/tps/i1/TB1SKhUHVXXXXb7XXXX0HY8HXXX-1024-1024.jpeg',
+                '//img.alicdn.com/tps/i4/TB1AdxNHVXXXXasXpXX0HY8HXXX-1024-1024.jpeg',
+            ]
+        });
+        //点击时打开图片浏览器
+        $(document).on('click','.pb-standalone',function () {
+            myPhotoBrowserStandalone.open();
+        });
+
+        /*=== Popup ===*/
+        var myPhotoBrowserPopup = $.photoBrowser({
+            photos : [
+                '//img.alicdn.com/tps/i3/TB1kt4wHVXXXXb_XVXX0HY8HXXX-1024-1024.jpeg',
+                '//img.alicdn.com/tps/i1/TB1SKhUHVXXXXb7XXXX0HY8HXXX-1024-1024.jpeg',
+                '//img.alicdn.com/tps/i4/TB1AdxNHVXXXXasXpXX0HY8HXXX-1024-1024.jpeg',
+            ],
+            type: 'popup'
+        });
+        $(document).on('click','.pb-popup',function () {
+            myPhotoBrowserPopup.open();
+        });
+
+        /*=== 有标题 ===*/
+        var myPhotoBrowserCaptions = $.photoBrowser({
+            photos : [
+                {
+                    url: '//img.alicdn.com/tps/i3/TB1kt4wHVXXXXb_XVXX0HY8HXXX-1024-1024.jpeg',
+                    caption: 'Caption 1 Text'
+                },
+                {
+                    url: '//img.alicdn.com/tps/i1/TB1SKhUHVXXXXb7XXXX0HY8HXXX-1024-1024.jpeg',
+                    caption: 'Second Caption Text'
+                },
+                // 这个没有标题
+                {
+                    url: '//img.alicdn.com/tps/i4/TB1AdxNHVXXXXasXpXX0HY8HXXX-1024-1024.jpeg',
+                },
+            ],
+            theme: 'dark',
+            type: 'standalone'
+        });
+        $(document).on('click','.pb-standalone-captions',function () {
+            myPhotoBrowserCaptions.open();
+        });
+
+        /*=== 有视频 ===*/
+        var myPhotoBrowserVideo = $.photoBrowser({
+            photos : [
+                {
+                    html: '<iframe src="//www.youtube.com/embed/lmc21V-zBq0?list=PLpj0FBQgLGEr3mtZ5BTwtmSwF1dkPrPRM" frameborder="0" allowfullscreen></iframe>',
+                    caption: 'Woodkid - Run Boy Run (Official HD Video)'
+                },
+                {
+                    url: 'http://lorempixel.com/1024/1024/sports/2/',
+                    caption: 'Second Caption Text'
+                },
+                {
+                    url: 'http://lorempixel.com/1024/1024/sports/3/',
+                },
+            ],
+            theme: 'dark',
+            type: 'standalone'
+        });
+        $(document).on('click','.pb-standalone-video',function () {
+            myPhotoBrowserVideo.open();
+        });
+    })
+</script>
+</body>
+</html>

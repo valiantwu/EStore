@@ -1,0 +1,2 @@
+requestContextFilter=org.woo.dubbo.service.filter.RequestContextFilter
+threadLifeCycleFilter=org.woo.dubbo.service.filter.ThreadLifeCycleFilter

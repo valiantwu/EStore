@@ -1,0 +1,10 @@
+{
+  "definitions": [
+    {
+      "type": "service",
+      "interface": "org.woo.service.metadata.IMetaDataService",
+      "class": "org.woo.service.metadata.MetaDataService",
+      "timeout": "600000"
+    }
+  ]
+}

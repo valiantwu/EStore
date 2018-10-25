@@ -1,0 +1,17 @@
+rootProject.name = 'debugserver-core'
+//include ':framework-edge'
+//project(':framework-edge').projectDir = new File('../../code/framework-edge')
+//include ':cache-edge'
+//project(':cache-edge').projectDir = new File('../../code/cache-edge')
+//include ':db-edge'
+//project(':db-edge').projectDir = new File('../../code/db-edge')
+//include ':file-edge'
+//project(':file-edge').projectDir = new File('../../code/file-edge')
+//include ':metadata-edge'
+//project(':metadata-edge').projectDir = new File('../../code/metadata-edge')
+//include ':meta-edge'
+//project(':meta-edge').projectDir = new File('../../code/meta-edge')
+//include ':service-edge'
+//project(':service-edge').projectDir = new File('../../code/service-edge')
+//include ':login-edge'
+//project(':login-edge').projectDir = new File('../../code/login-edge')

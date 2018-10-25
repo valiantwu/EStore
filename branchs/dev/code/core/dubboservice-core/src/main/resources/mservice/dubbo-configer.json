@@ -1,0 +1,18 @@
+{
+  "definitions": [
+    {
+      "type": "application",
+      "name": "EStore"
+    },
+    {
+      "type": "registry",
+      "protocol": "zookeeper",
+      "address": "192.168.1.106:2181"
+    },
+    {
+      "type": "consumer",
+      "timeout": "600000",
+      "delay": "10"
+    }
+  ]
+}

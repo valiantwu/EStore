@@ -1,0 +1,10 @@
+/bin/
+out/
+.gradle/
+build/dependency-cache/
+build/tmp/compileJava/
+src/test/
+Embedded/
+myProject/
+build/classes/
+/build/

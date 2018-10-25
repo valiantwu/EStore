@@ -1,0 +1,155 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+group = 'kd.bos.service'
+version = '1.0'
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+dependencies {
+
+}
+def corelib = 'C:/evn-dev/mservice/corelib'
+def trd = 'C:/evn-dev/mservice/trd'
+def outputdir = 'C:/evn-dev/mservice/corelib'
+ext.projectname = [
+//        "kclient-core",
+//        "kclient-processor",
+        "mservice-permission-api",
+        "mservice-permission",
+        "mservice-user-api",
+        "mservice-user"
+]
+
+ext.buildtasknames = new ArrayList<String>();
+tasks.whenTaskAdded { theTask ->
+    if (theTask.name.indexOf("_upload") > 0) {
+        println theTask.name; theTask.outputs.upToDateWhen { false }
+    }
+}
+task buildAndDeployToLocalLib() {
+    projectname.eachWithIndex { pname, index ->
+
+        def tempFile = new File(projectDir.getAbsolutePath() + '/../' + pname + '/build.gradle')
+        println tempFile.getAbsolutePath();
+        if (tempFile.isFile()) {
+            task "buildprojects_${pname}_build"(type: GradleBuild) {
+                buildFile = projectDir.getAbsolutePath() + '/../' + pname + '/build.gradle'
+                def tempList = new ArrayList<String>();
+                tempList.add('clean');
+                tempList.add('build');
+//                tempList.add('sourcesJar');
+                tasks = tempList;
+            }
+            buildtasknames.add("buildprojects_${pname}_build");
+            //	tasks."buildprojects${index}".execute();
+        }
+
+        task "buildprojects_${pname}_upload"(type: Copy) {
+            def libsDir = new File(projectDir.getAbsolutePath(), '/../' + pname + '/build/libs')
+            if (true) {
+                from libsDir
+                into outputdir
+                //exclude '*-source*.jar'
+                println libsDir.getAbsolutePath() + '  jar file has copied sunccesfully! '
+            }
+        }
+        buildtasknames.add("buildprojects_${pname}_upload");
+
+        // 娴嬭瘯缁撴灉鍙戝竷鍒扮粺涓�鐨勭洰褰�
+        task "buildprojects_${pname}_publish_test_result"(type: Copy) {
+            def libsDir = new File(projectDir.getAbsolutePath(), '/../' + pname + '/build/test-results/test')
+            if (true) {
+                from libsDir
+                into '${buildDir}/../../target/test'
+                include 'TEST-*.xml'
+                println libsDir.getAbsolutePath() + '  jar file has copied sunccesfully! '
+            }
+        }
+        buildtasknames.add("buildprojects_${pname}_publish_test_result");
+        //tasks."copytolib${index}".execute();
+        //"copytolib${index}".mustRunAfter "buildprojects${index}"
+    }
+}
+task buildAndDeployToLocalLib2(dependsOn: 'buildAndDeployToLocalLib') {
+
+    // 鍒涘缓鍙戝竷鐩綍鎵�鐢ㄥ埌鐨勬枃浠跺す. 2閮ㄥ垎: 绗竴, 鏈ā鍧楁墍鐢ㄧ殑. 妯″潡鐨勬牴鐩綍涓�
+    def parentTarget = new File("$buildDir/../../target")
+    if (parentTarget.exists()) {
+        parentTarget.delete()
+    }
+    parentTarget.mkdirs()
+    def parentTest = new File("$buildDir/../../target/test")
+    parentTest.mkdirs()
+    // 绗簩, 鍚堝苟缁撴灉鎵�浣跨敤鐨勬枃浠跺す. 涓庢ā鍧楁墍鍦ㄧ殑鏂囦欢澶瑰悓绾�
+    def mergedTarget = new File("$buildDir/../../../target/test")
+    if (!mergedTarget.exists()) {
+        mergedTarget.mkdirs()
+    }
+
+    buildtasknames.eachWithIndex { taskname, index ->
+        if (index != 0) {
+            //println buildtasknames[index-1]
+            //println 'here'
+            //def aaa =  buildtasknames[index-1]
+            tasks."${taskname}".dependsOn tasks."${buildtasknames[index - 1]}"
+        }
+
+    }
+
+}
+
+task buildAndDeployToLocalLib1(dependsOn: 'buildAndDeployToLocalLib2') {
+    group 'build'
+    description 'buildAndDeployToLocalLib1'
+}
+
+buildAndDeployToLocalLib1.dependsOn buildtasknames
+
+task updateLocalLibFromServer(type: Exec) {
+    group 'build'
+    description '浠庢湇鍔＄鏇存柊鏈湴lib鍖�'
+    commandLine = ['cmd', '/C', 'C:/nextCloudLib_dev_0724/libupdate.bat']
+}
+// 浠ヤ笅涓� 鍚堝苟娴嬭瘯鎶ュ憡閮ㄥ垎 . 鍚堝苟鏈ā鍧楃殑娴嬭瘯鎶ュ憡
+repositories {
+    maven {
+        credentials {
+            username "deployment"
+            password "deployment123"
+        }
+        // change to point to your repo, e.g. http://my.org/repo
+        url "http://192.168.64.54:8081/nexus/content/repositories/central/"
+    }
+}
+
+configurations {
+    antJUnit
+}
+
+dependencies {
+    antJUnit 'org.apache.ant:ant-junit:1.9.7'
+}
+
+task mergeJUnitReports {
+    group 'build'
+
+    ext {
+        resultsDir = file("$buildDir/../../target/test")
+        targetDir = file("$buildDir/../../target/test-results/merged")
+    }
+
+    doLast {
+        ant.taskdef(name: 'junitreport',
+                classname: 'org.apache.tools.ant.taskdefs.optional.junit.XMLResultAggregator',
+                classpath: configurations.antJUnit.asPath)
+
+        ant.junitreport(todir: resultsDir, tofile: "../../../../target/test/${project.name}_merged.xml") {
+            fileset(dir: resultsDir, includes: 'TEST-*.xml')
+            report(todir: targetDir, format: 'frames')
+        }
+    }
+}
+
+test.ignoreFailures true

@@ -1,0 +1,58 @@
+group 'edge.woo'
+version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+def corelib = 'C:/evn-dev/corelib'
+def trd = 'C:/evn-dev/trd'
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src/main/java"]
+        }
+        resources {
+            srcDirs = ["src/main/resources"]
+        }
+    }
+}
+println(configurations.compile.fileCollection { trd })
+
+dependencies {
+    compile fileTree(dir: trd, include: 'slf4j-api-*.jar')
+    compile fileTree(dir: trd, include: 'aspectjrt-*.jar')
+    compile fileTree(dir: trd, include: 'cglib-2.2.2*.jar')
+    compile fileTree(dir: corelib, include: 'redis-core*.jar')
+    compile fileTree(dir: corelib, include: 'service-core*.jar')
+}
+task sourcesJar(type: Jar, dependsOn: build) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task copytolib(type: Copy, dependsOn: build) {
+    group 'build'
+    description '拷贝本工程构建jar包到lib'
+    from 'build/libs'
+    into corelib
+    exclude '*source*.jar'
+}
+
+
+task copyJarTodir(type: Copy) {
+    group 'build'
+    description '拷贝工程产生的build.jar到本地库'
+    from 'build/libs'
+    into corelib
+    exclude '**/*.class'
+}
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+test.ignoreFailures true
