@@ -1,4 +1,4 @@
-package org.woo.zk;
+package org.woo.demo;
 
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;

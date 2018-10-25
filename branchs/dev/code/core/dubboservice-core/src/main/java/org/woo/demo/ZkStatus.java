@@ -1,18 +1,18 @@
-package org.woo.zk;
+package org.woo.demo;
 
 public class ZkStatus {
     private static ZkStatus instance = new ZkStatus();
-    private static ZkStatus.Status zkStatus = null;
+    private static Status zkStatus = null;
 
     public static ZkStatus getInstance() {
         return instance;
     }
 
-    public ZkStatus.Status get() {
+    public Status get() {
         return zkStatus;
     }
 
-    public void setZkStatus(ZkStatus.Status zkStatus) {
+    public void setZkStatus(Status zkStatus) {
         ZkStatus.zkStatus = zkStatus;
     }
 
