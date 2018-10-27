@@ -45,7 +45,7 @@ public class ServiceConfig {
 
     static {
         serviceClasses = new String[]{"org.woo.dubbo.DubboService"};
-        msServicesClasses = new String[]{"org.woo.service.cache.RedisAccessService","org.woo.excecutor.ExecutorService"};
+        msServicesClasses = new String[]{"org.woo.service.cache.RedisAccessService"};
         ArrayList<IService> sList = getServiceList(serviceClasses);
         ArrayList<IService> msList = new ArrayList<>();
         ArrayList<IService> webList = new ArrayList<>();

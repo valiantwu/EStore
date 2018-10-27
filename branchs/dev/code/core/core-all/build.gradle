@@ -10,9 +10,9 @@ tasks.withType(JavaCompile) {
 dependencies {
 
 }
-def corelib = 'C:/evn-dev/mservice/corelib'
-def trd = 'C:/evn-dev/mservice/trd'
-def outputdir = 'C:/evn-dev/mservice/corelib'
+def corelib = '/evn-dev/mservice/core'
+def trd = '/evn-dev/mservice/trd'
+def outputdir = '/evn-dev/mservice/core'
 ext.projectname = [
         "exception-core",
         "config-client",
@@ -32,7 +32,8 @@ ext.projectname = [
         "devenv-core",
         "servicehelper-core",
         "mservice-form-api",
-        "mservice-form"
+        "mservice-form",
+        "webactions-core"
 ]
 
 ext.buildtasknames = new ArrayList<String>();

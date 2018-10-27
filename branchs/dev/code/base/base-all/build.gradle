@@ -10,16 +10,17 @@ tasks.withType(JavaCompile) {
 dependencies {
 
 }
-def corelib = 'C:/evn-dev/mservice/corelib'
-def trd = 'C:/evn-dev/mservice/trd'
-def outputdir = 'C:/evn-dev/mservice/corelib'
+def corelib = '/evn-dev/mservice/core'
+def trd = '/evn-dev/mservice/trd'
+def outputdir = '/evn-dev/mservice/core'
 ext.projectname = [
 //        "kclient-core",
 //        "kclient-processor",
         "mservice-permission-api",
         "mservice-permission",
         "mservice-user-api",
-        "mservice-user"
+        "mservice-user",
+        "webactions-login"
 ]
 
 ext.buildtasknames = new ArrayList<String>();
