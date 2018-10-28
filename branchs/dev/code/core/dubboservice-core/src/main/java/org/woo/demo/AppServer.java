@@ -8,6 +8,8 @@ import org.apache.zookeeper.data.Stat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 public class AppServer extends Thread {
     protected static final Logger logger = LoggerFactory.getLogger(AppServer.class);
     private static CuratorFramework client;
@@ -31,6 +33,7 @@ public class AppServer extends Thread {
         // 1、目录名称 2、目录文本信息
         // 3、文件夹权限，Ids.OPEN_ACL_UNSAFE表示所有权限
         // 4、目录类型，CreateMode.EPHEMERAL_SEQUENTIAL表示创建临时目录，session断开连接则目录自动删除
+        List<String> forPath = client.getChildren().forPath(clusterNode);
         client.getChildren().forPath(clusterNode);
         String createdPath = client.create().withMode(CreateMode.EPHEMERAL).forPath(address);
         logger.info("create: " + createdPath);
@@ -43,7 +46,7 @@ public class AppServer extends Thread {
     }
 
     static {
-        CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder().connectString("192.168.1.106:2181").retryPolicy(new RetryNTimes(2147, 1000)).connectionTimeoutMs(5000).sessionTimeoutMs(50000);
+        CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder().connectString("192.168.0.102:2181").retryPolicy(new RetryNTimes(2147, 1000)).connectionTimeoutMs(5000).sessionTimeoutMs(50000);
         client = builder.build();
         client.start();
         try {

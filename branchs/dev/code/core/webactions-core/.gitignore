@@ -6,5 +6,6 @@ build/tmp/compileJava/
 src/test/
 Embedded/
 myProject/
+*.MF
 build/classes/
 /build/

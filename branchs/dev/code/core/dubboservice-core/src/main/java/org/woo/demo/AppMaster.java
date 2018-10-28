@@ -2,7 +2,6 @@ package org.woo.demo;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
-import org.apache.curator.framework.api.GetChildrenBuilder;
 import org.apache.curator.retry.RetryNTimes;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.data.Stat;
@@ -23,7 +22,7 @@ public class AppMaster {
         List<String> newServerList = new ArrayList<String>();
 
         // watcher注册后，只能监听事件一次，参数true表示继续使用默认watcher监听事件
-        GetChildrenBuilder subList = client.getChildren();
+        newServerList = client.getChildren().forPath(clusterNode);
         serverList = newServerList;
         System.out.println("server list updated: " + serverList);
     }
@@ -35,13 +34,13 @@ public class AppMaster {
     }
 
     static {
-        CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder().connectString("192.168.1.106:2181").retryPolicy(new RetryNTimes(2147, 1000)).connectionTimeoutMs(5000).sessionTimeoutMs(50000);
+        CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder().connectString("192.168.0.106:2181").retryPolicy(new RetryNTimes(2147, 1000)).connectionTimeoutMs(5000).sessionTimeoutMs(50000);
         client = builder.build();
         client.start();
         try {
             Stat exits = client.checkExists().forPath(clusterNode);
             if (exits == null) {
-                client.create().withMode(CreateMode.EPHEMERAL).forPath(clusterNode);
+                client.create().withMode(CreateMode.PERSISTENT).forPath(clusterNode);
             }
         } catch (Exception e) {
             e.printStackTrace();

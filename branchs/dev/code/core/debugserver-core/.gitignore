@@ -9,4 +9,5 @@ build/classes/
 *.java
 *.xml
 *.json
+*.MF
 src/

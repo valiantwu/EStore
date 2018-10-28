@@ -3,6 +3,7 @@
 *.classpath
 out/
 .gradle/
+*.MF
 build/dependency-cache/
 build/tmp/compileJava/
 build/classes/
