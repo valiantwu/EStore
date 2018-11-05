@@ -16,11 +16,11 @@ def outputdir = '/evn-dev/mservice/core'
 ext.projectname = [
 //        "kclient-core",
 //        "kclient-processor",
-        "mservice-permission-api",
-        "mservice-permission",
-        "mservice-user-api",
-        "mservice-user",
-        "webactions-login"
+        "base-login",
+        "permission-mservice-api",
+        "permission-mservice",
+        "user-mservice-api",
+        "user-mservice"
 ]
 
 ext.buildtasknames = new ArrayList<String>();
