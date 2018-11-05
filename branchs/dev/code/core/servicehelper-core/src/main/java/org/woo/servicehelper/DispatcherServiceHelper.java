@@ -1,4 +1,4 @@
-package org.woo.web;
+package org.woo.servicehelper;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

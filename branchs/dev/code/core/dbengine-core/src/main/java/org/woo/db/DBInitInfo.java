@@ -1,7 +1,5 @@
 package org.woo.db;
 
-import org.woo.db.context.DBConfig;
-
 import java.util.ArrayList;
 import java.util.List;
 

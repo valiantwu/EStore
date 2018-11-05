@@ -1,4 +1,4 @@
-package org.woo.db.context;
+package org.woo.db;
 
 public class DBConfig {
     private String driverName;

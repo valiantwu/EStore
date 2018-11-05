@@ -4,7 +4,7 @@
 
 <configuration scan="true" scanPeriod="10 seconds">
 	<!--日志路径 -->
-	<property name="logback.logs.path" value="/home/valiant/log/" />
+	<property name="logback.logs.path" value="/home/valiantwu/log/" />
 	<!--项目名 -->
 	<property name="logback.project.name" value="EStore-mservice" />
 	<!--日志文件名的日期格式 -->

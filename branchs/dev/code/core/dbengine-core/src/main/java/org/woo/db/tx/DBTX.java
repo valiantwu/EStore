@@ -1,14 +1,17 @@
-package org.woo.db;
+package org.woo.db.tx;
 
-import org.woo.db.context.DBConfig;
+import org.woo.db.ConnectionPool;
+import org.woo.db.DBInitInfo;
+import org.woo.db.IConnectionPool;
+import org.woo.db.DBConfig;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Hashtable;
 
-public final class TX {
-    private static ThreadLocal<TXContext> tx_holders = new ThreadLocal<>();
-    private static ThreadLocal<TXContext> out_tx_holders = new ThreadLocal<>();
+public class DBTX {
+    private static ThreadLocal<DBTXContext> tx_holders = new ThreadLocal<>();
+    private static ThreadLocal<DBTXContext> out_tx_holders = new ThreadLocal<>();
     private static ThreadLocal<Throwable> throwableThreadLocal = new ThreadLocal<>();
     private Hashtable<String, IConnectionPool> pools = new Hashtable<String, IConnectionPool>();
 
