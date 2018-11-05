@@ -1,4 +1,4 @@
-package org.woo.service.rpc;
+package org.woo.dubbo.rpc;
 
 public class ByteObjConverter {
 
