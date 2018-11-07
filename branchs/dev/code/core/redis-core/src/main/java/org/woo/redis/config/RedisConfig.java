@@ -1,5 +1,7 @@
 package org.woo.redis.config;
 
+import redis.clients.jedis.JedisPoolConfig;
+
 import java.io.Serializable;
 
 public final class RedisConfig implements Serializable {
@@ -9,13 +11,24 @@ public final class RedisConfig implements Serializable {
 
     private static String AUTH = "admin";
 
-    private static int MAX_ACTIVE = 1024;
+    private static int DEFAULT_MAX_ACTIVE = 1024;
 
-    private static int MAX_IDLE = 200;
+    private static int DEFAULT_MAX_IDLE = 10;
 
-    private static int MAX_WAIT = 10000;
+    private static int DEFAULT_MIN_IDLE = 5;
 
-    private static int TIMEOUT = 10000;
+    private static int DEFAULT_MAX_WAIT = 5000;
 
-    private static boolean TEST_ON_BORROW = true;
+    private static boolean DEFAULT_TEST_ON_BORROW = false;
+    private static boolean DEFAULT_TEST_ON_RETURN = false;
+    public JedisPoolConfig getPoolConfig(){
+        JedisPoolConfig jedisPoolConfig= new JedisPoolConfig();
+        jedisPoolConfig.setMaxTotal(DEFAULT_MAX_ACTIVE);
+        jedisPoolConfig.setMaxIdle(DEFAULT_MAX_IDLE);
+        jedisPoolConfig.setMinIdle(DEFAULT_MIN_IDLE);
+        jedisPoolConfig.setMaxWaitMillis(DEFAULT_MAX_WAIT);
+        jedisPoolConfig.setTestOnBorrow(DEFAULT_TEST_ON_BORROW);
+        jedisPoolConfig.setTestOnReturn(DEFAULT_TEST_ON_RETURN);
+        return jedisPoolConfig;
+    }
 }
