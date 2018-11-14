@@ -43,13 +43,17 @@ public class DubboBeanConfig {
             CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder().connectString(url).retryPolicy(new RetryNTimes(3, 1000)).connectionTimeoutMs(5000).sessionTimeoutMs(60000);
             client = builder.build();
             client.start();
+            Stat exits = client.checkExists().forPath(dubboRootPath);
+            if (exits==null){
+                client.create().withMode(CreateMode.PERSISTENT).forPath(dubboRootPath );
+            }
             Timer timer = new Timer("dubbomoniter");
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
                     if (dubboRootPath != null) {
                         try {
-                            Stat exits = client.checkExists().forPath(dubboRootPath + identifiedPath);
+                            Stat exits = client.checkExists().forPath(dubboRootPath);
                             if (exits == null) {
                                 createIdentified();
                                 logger.info(dubboRootPath + identifiedPath + " dubbo registry has losted");

@@ -1,8 +1,7 @@
-package org.woo.service.demo;
+package org.woo.dubbo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.woo.framework.lifecycle.IService;
 
 public class DemoServiceImpl implements IService {
     protected final Logger log = LoggerFactory.getLogger(this.getClass());

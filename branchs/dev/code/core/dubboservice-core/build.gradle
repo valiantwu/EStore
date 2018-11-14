@@ -10,9 +10,9 @@ repositories {
     mavenCentral()
 }
 
-def corelib = '/evn-dev/mservice/core'
-def trd = '/evn-dev/mservice/trd'
-def outputdir = '/evn-dev/mservice/core'
+def corelib = 'c:/evn-dev/mservice/core'
+def trd = 'c:/evn-dev/mservice/trd'
+def outputdir = 'c:/evn-dev/mservice/core'
 sourceSets {
     main {
         java {

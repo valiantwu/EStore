@@ -10,9 +10,9 @@ tasks.withType(JavaCompile) {
 dependencies {
 
 }
-def corelib = '/evn-dev/mservice/core'
-def trd = '/evn-dev/mservice/trd'
-def outputdir = '/evn-dev/mservice/core'
+def corelib = 'c:/evn-dev/mservice/core'
+def trd = 'c:/evn-dev/mservice/trd'
+def outputdir = 'c:/evn-dev/mservice/core'
 ext.projectname = [
         "exception-core",
         "config-client",
