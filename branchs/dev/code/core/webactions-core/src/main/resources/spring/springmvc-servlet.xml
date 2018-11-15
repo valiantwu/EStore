@@ -11,9 +11,9 @@
 	http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <context:annotation-config></context:annotation-config>
+    <mvc:annotation-driven></mvc:annotation-driven>
     <!--      扫描注解bean -->
     <context:component-scan base-package="org.woo.web.controller"></context:component-scan>
-    <context:component-scan base-package="org.woo.login.controller"></context:component-scan>
     <mvc:annotation-driven>
     </mvc:annotation-driven>
 </beans>
