@@ -7,7 +7,7 @@
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
-   <context-param>
+    <context-param>
         <param-name>container</param-name>
         <param-value>mscontainer</param-value>
     </context-param>
@@ -74,7 +74,7 @@
     <session-config>
         <session-timeout>1000</session-timeout>
     </session-config>
-     <servlet>
+    <servlet>
         <servlet-name>springmvc</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
