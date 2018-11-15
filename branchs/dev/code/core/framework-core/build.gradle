@@ -1,8 +1,15 @@
+apply from:'../config.gradle'
 group 'edge.woo'
 version '1.0'
 
 apply plugin: 'java'
 apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+repositories {
+    mavenCentral()
+}
 
 //编译groovy代码时采用 UTF-8
 tasks.withType(GroovyCompile) {
@@ -14,14 +21,9 @@ tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-repositories {
-    mavenCentral()
-}
-def corelib = '/evn-dev/mservice/core'
-def trd = '/evn-dev/mservice/trd'
-def outputdir = '/evn-dev/mservice/core'
+def corelib = ext.path.core
+def trd = ext.path.trd
+def outputdir = ext.path.outputdir
 sourceSets {
     main {
         java {
@@ -71,7 +73,7 @@ task copyJarTodir(type: Copy) {
     group 'build'
     description '拷贝工程产生的build.jar到本地库'
     from 'build/libs'
-    into corelib
+    into outputdir
     exclude '**/*.class'
 }
 tasks.withType(JavaCompile) {

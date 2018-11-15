@@ -4,16 +4,7 @@ ext
 		   trd:'C:/evn-dev/mservice/lib/trd',
 	       core:'C:/evn-dev/mservice/lib/core',
 	       base:'C:/evn-dev/mservice/lib/base',
-		   currentapp:'C:/evn-dev/mservice/lib/biz',
-		   biz:'C:/evn-dev/mservice/lib/biz',
-	       outputdir:'C:/evn-dev/mservice/lib/biz'
-	]
-	linux=[ 
-		   trd:'/evn-dev/mservice/lib/trd',
-	       core:'/evn-dev/mservice/lib/core',
-	       base:'/evn-dev/mservice/lib/base',
-		   currentapp:'/evn-dev/mservice/lib/biz',
-		   biz:'/evn-dev/mservice/lib/biz',
-	       outputdir:'/evn-dev/mservice/lib/biz'
+		   currentapp:'C:/evn-dev/mservice/lib/core',
+	       outputdir:'C:/evn-dev/mservice/lib/core'
 	]
 }

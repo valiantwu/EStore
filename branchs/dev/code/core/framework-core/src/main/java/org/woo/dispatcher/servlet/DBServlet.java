@@ -2,7 +2,7 @@ package org.woo.dispatcher.servlet;
 
 
 import org.woo.db.ConnectionPool;
-import org.woo.db.context.DBConfig;
+import org.woo.db.DBConfig;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

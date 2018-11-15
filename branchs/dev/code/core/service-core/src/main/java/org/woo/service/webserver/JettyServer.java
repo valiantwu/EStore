@@ -23,7 +23,7 @@ public class JettyServer {
         }
 
         int port = Integer.parseInt(webport);
-        String contextPath = getProperty("JETTY_CONTEXT", "/EStore");
+        String contextPath = getProperty("JETTY_CONTEXT", "/estore");
         if (!contextPath.startsWith("/")) {
             contextPath = "/" + contextPath;
         }
