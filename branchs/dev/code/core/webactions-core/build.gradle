@@ -22,6 +22,7 @@ tasks.withType(JavaCompile) {
 }
 
 def corelib = ext.path.core
+def base = ext.path.base
 def trd = ext.path.trd
 def outputdir = ext.path.outputdir
 sourceSets {
@@ -39,7 +40,7 @@ println(configurations.compile.fileCollection { trd })
 dependencies {
     compile fileTree(dir: corelib, include: 'dataentity*.jar')
     compile fileTree(dir: trd, include: 'protostuff*.jar')
-    compile fileTree(dir: corelib, include: 'mservice-user*.jar')
+    compile fileTree(dir: base, include: 'user-mservice*.jar')
     compile fileTree(dir: trd, include: 'javax.servlet-api*.jar')
     compile fileTree(dir: trd, include: 'spring-web-*.RELEASE.jar')
     compile fileTree(dir: trd, include: 'slf4j-api-*.jar')

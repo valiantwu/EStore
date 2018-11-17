@@ -1,6 +1,9 @@
 apply from:'../config.gradle'
 group 'edge.woo'
 version '1.0'
+apply from:'../config.gradle'
+group 'edge.woo'
+version '1.0'
 
 apply plugin: 'java'
 apply plugin: 'idea'

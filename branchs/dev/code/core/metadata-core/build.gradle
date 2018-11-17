@@ -1,8 +1,15 @@
+apply from:'../config.gradle'
 group 'edge.woo'
 version '1.0'
 
 apply plugin: 'java'
 apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+repositories {
+    mavenCentral()
+}
 
 //编译groovy代码时采用 UTF-8
 tasks.withType(GroovyCompile) {
@@ -14,14 +21,12 @@ tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+def corelib = ext.path.core
+def trd = ext.path.trd
+def outputdir = ext.path.outputdir
 repositories {
     mavenCentral()
 }
-def corelib = '/evn-dev/mservice/core'
-def trd = '/evn-dev/mservice/trd'
-def outputdir = '/evn-dev/mservice/core'
 sourceSets {
     main {
         java {

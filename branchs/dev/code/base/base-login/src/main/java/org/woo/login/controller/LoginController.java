@@ -65,7 +65,6 @@ public final class LoginController extends AbstractController<User> {
         Map<String, Object> reMap = new HashMap<String, Object>();
         User reUser = null;
         TokenHistory serverTokenHistory = new TokenHistory();
-        reUser = userService.queryByUserName(master.getLoginName());
         if (reUser != null && master.getLoginName().equalsIgnoreCase(reUser.getLoginName())) {
             if (master.getLoginPassWord().equals(reUser.getLoginPassWord())) {
                 reMap.put(KEY_CODE, RESCODE_SUCCESS);
@@ -116,10 +115,9 @@ public final class LoginController extends AbstractController<User> {
         if (claims != null) {
             String json = claims.getSubject();
             User master = JSONObject.parseObject(json, User.class);
-            String accessToken = (String) iTokenService.getTokenByMaterId(master.getPkId());
             TokenHistory tokenHistory = null;
 //            tokenHistory = iTokenHistoryService.getTokenByAccessToken(accessToken);
-            if (loginTokenHistory.equals(accessToken)) {
+            if (loginTokenHistory.equals("")) {
                 if (tokenHistory != null && tokenHistory.getLoginIp() != null && tokenHistory.getLoginIp().length() > 0 && super.getIpV4().equals(tokenHistory.getLoginIp())) {
                     Map<String, Object> map = new HashMap<String, Object>();
                     map.put("pkId", master.getPkId());

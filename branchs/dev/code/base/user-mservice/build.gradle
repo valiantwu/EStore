@@ -1,3 +1,4 @@
+apply from:'../config.gradle'
 group 'edge.woo'
 version '1.0'
 
@@ -5,14 +6,25 @@ apply plugin: 'java'
 apply plugin: 'idea'
 
 sourceCompatibility = 1.8
-
+targetCompatibility = 1.8
 repositories {
     mavenCentral()
 }
 
-def corelib = '/evn-dev/mservice/core'
-def trd = '/evn-dev/mservice/trd'
-def outputdir = '/evn-dev/mservice/core'
+//编译groovy代码时采用 UTF-8
+tasks.withType(GroovyCompile) {
+    groovyOptions.encoding = "MacRoman"
+}
+
+//编译JAVA文件时采用UTF-8
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+def corelib = ext.path.core
+def base = ext.path.base
+def trd = ext.path.trd
+def outputdir = ext.path.outputdir
 sourceSets {
     main {
         java {
@@ -27,9 +39,8 @@ println(configurations.compile.fileCollection { trd })
 
 dependencies {
     compile fileTree(dir: corelib, include: 'orm*.jar')
-    compile fileTree(dir: corelib, include: 'mservice-core-api*.jar')
     compile fileTree(dir: corelib, include: 'dataentity*.jar')
-    compile fileTree(dir: corelib, include: 'mservice-user-api*.jar')
+    compile fileTree(dir: base, include: 'user-mservice-api*.jar')
     compile fileTree(dir: trd, include: 'slf4j-api-*.jar')
 }
 task sourcesJar(type: Jar, dependsOn: build) {

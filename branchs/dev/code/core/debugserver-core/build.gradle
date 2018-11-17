@@ -23,6 +23,7 @@ tasks.withType(JavaCompile) {
 
 def corelib = ext.path.core
 def trd = ext.path.trd
+def  base= ext.path.base
 def outputdir = ext.path.outputdir
 sourceSets {
     main {
@@ -38,6 +39,7 @@ println(configurations.compile.fileCollection { trd })
 
 dependencies {
     runtime fileTree(dir: corelib, include: '*.jar')
+    runtime fileTree(dir: base, include: '*.jar')
     runtime fileTree(dir: trd, include: '*.jar')
 }
 task sourcesJar(type: Jar, dependsOn: build) {

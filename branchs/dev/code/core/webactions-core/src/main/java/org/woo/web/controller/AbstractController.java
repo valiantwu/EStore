@@ -5,11 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.woo.dataentity.model.Page;
-import org.woo.mservice.ITokenService;
-import org.woo.mservice.IUserService;
 import org.woo.web.utils.JwtUtil;
 import org.woo.web.utils.NetworkUtil;
-
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,9 +20,7 @@ import java.util.Map;
  */
 public abstract class AbstractController<T> implements IController<T> {
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
-    protected IUserService userService;
     protected JwtUtil jwtUtil = new JwtUtil();
-    protected ITokenService iTokenService;
     /*
      *返回值-code
      */
