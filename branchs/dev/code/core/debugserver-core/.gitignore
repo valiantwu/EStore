@@ -6,8 +6,6 @@ build/tmp/compileJava/
 build/classes/
 *.iml
 .idea/
-*.java
 *.xml
 *.json
 *.MF
-src/
