@@ -11,7 +11,7 @@ public class RunnableRedis implements Runnable {
     private static final Logger logger = LoggerFactory.getLogger(RunnableRedis.class);
 
     String watchkeys = "watchkeys";// 监视keys
-    Jedis jedis = new Jedis("192.168.1.106", 6379);
+    Jedis jedis = new Jedis("192.168.0.106", 6379);
     String userinfo;
 
     public RunnableRedis() {

@@ -6,7 +6,7 @@ import org.woo.orm.mybatis.mapper.UserMapper;
 
 import java.util.List;
 
-public class UserService {
+public class UserServiceTest {
     public static void main(String[] args) {
         insertUser();
         selectUserById();
