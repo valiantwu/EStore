@@ -18,8 +18,8 @@ DROP TABLE T_SEC_USERGROUP CASCADE CONSTRAINTS;
 CREATE TABLE T_PERM_PERM 
 (
    PK_ID                NUMBER(20)           NOT NULL,
-   FNUMBER              VARCHAR2(60 CHAR)    NOT NULL,
-   FNAME                VARCHAR2(80 CHAR)    NOT NULL,
+   FNUMBER              VARCHAR(60 CHAR)    NOT NULL,
+   FNAME                VARCHAR(80 CHAR)    NOT NULL,
    FSTATUS              CHAR(1 CHAR)         NOT NULL,
    CONSTRAINT PK_T_PERM_PERM PRIMARY KEY (PK_ID)
 );
@@ -30,8 +30,8 @@ CREATE TABLE T_PERM_PERM
 CREATE TABLE T_PERM_ROLE 
 (
    PK_ID                NUMBER(20)           NOT NULL,
-   FNUMBER              VARCHAR2(60 CHAR)    NOT NULL,
-   FNAME                VARCHAR2(80 CHAR)    NOT NULL,
+   FNUMBER              VARCHAR(60 CHAR)    NOT NULL,
+   FNAME                VARCHAR(80 CHAR)    NOT NULL,
    FSTATUS              CHAR(1 CHAR)         NOT NULL,
    CONSTRAINT PK_T_PERM_ROLE PRIMARY KEY (PK_ID)
 );
@@ -59,9 +59,9 @@ CREATE TABLE T_SEC_USER
 /*==============================================================*/
 CREATE TABLE T_SEC_USERGROUP 
 (
-   PK_ID                NUMBER(20)           NOT NULL,
-   FNUMBER              VARCHAR2(60 CHAR)    NOT NULL,
-   FNAME                VARCHAR2(80 CHAR)    NOT NULL,
+   FID                  NUMBER(20)           NOT NULL,
+   FNUMBER              VARCHAR(60 CHAR)    NOT NULL,
+   FNAME                VARCHAR(80 CHAR)    NOT NULL,
    FSTATUS              CHAR(1 CHAR)         NOT NULL,
    CONSTRAINT PK_T_SEC_USERGROUP PRIMARY KEY (PK_ID)
 );
