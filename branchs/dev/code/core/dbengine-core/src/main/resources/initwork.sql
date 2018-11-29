@@ -29,3 +29,6 @@ alter pluggable database pdbmyoracle open;
 alter session set container = pdbmyoracle
 
 alter session set container = CDB$ROOT;
+
+
+

@@ -41,14 +41,14 @@ CREATE TABLE T_PERM_ROLE
 /*==============================================================*/
 CREATE TABLE T_SEC_USER 
 (
-   FID                  NUMBER(20)           NOT NULL,
-   FNAME                VARCHAR2(18 BYTE),
-   FNUMNER              INTEGER,
+   FID                  INTEGER(20)          NOT NULL,
+   FNAME                VARCHAR(18),
+   FNUMNER              INTEGER(20),
    FPHONE               VARCHAR(13),
    FEAMAIL              VARCHAR(30),
-   FSTATUS              CHAR(1 CHAR),
-   FGENDER              CHAR(1 BYTE),
-   FIDCARD              CHAR(18 BYTE),
+   FSTATUS              CHAR(1),
+   FGENDER              CHAR(1),
+   FIDCARD              CHAR(18),
    FBIRTHDAY            TIMESTAMP,
    FUSERTYPE            CHAR(1),
    CONSTRAINT PK_T_SEC_USER PRIMARY KEY (FID)

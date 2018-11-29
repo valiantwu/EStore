@@ -46,6 +46,7 @@ dependencies {
     compile fileTree(dir: trd, include: 'jedis-*.jar')
     compile fileTree(dir: trd, include: 'junit-*.jar')
     compile fileTree(dir: trd, include: 'ojdbc8*.jar')
+    compile fileTree(dir: trd, include: 'mysql-connector-java*.jar')
     compile fileTree(dir: trd, include: 'mybatis-3.4.5.jar')
     compile fileTree(dir: trd, include: 'hamcrest-core-*.jar')
 //    compile fileTree(dir: trd, include: 'mysql-connector-java-*.jar')
