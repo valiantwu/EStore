@@ -44,28 +44,28 @@ public class DubboBeanConfig {
             client = builder.build();
             client.start();
             Stat exits = client.checkExists().forPath(dubboRootPath);
-            if (exits==null){
-                client.create().withMode(CreateMode.PERSISTENT).forPath(dubboRootPath );
+            if (exits == null) {
+                client.create().withMode(CreateMode.PERSISTENT).forPath(dubboRootPath);
             }
-            Timer timer = new Timer("dubbomoniter");
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    if (dubboRootPath != null) {
-                        try {
-                            Stat exits = client.checkExists().forPath(dubboRootPath);
-                            if (exits == null) {
-                                createIdentified();
-                                logger.info(dubboRootPath + identifiedPath + " dubbo registry has losted");
-                            }
-                        } catch (Exception e) {
-                            logger.error("dubbo.registry.address:" + System.getProperty("dubbo.registry.address"), e);
-                            e.printStackTrace();
-                        }
-
-                    }
-                }
-            }, 10000L, 3000L);
+//            Timer timer = new Timer("dubbomoniter");
+//            timer.schedule(new TimerTask() {
+//                @Override
+//                public void run() {
+//                    if (dubboRootPath != null) {
+//                        try {
+//                            Stat exits = client.checkExists().forPath(dubboRootPath);
+//                            if (exits == null) {
+//                                createIdentified();
+//                                logger.info(dubboRootPath + identifiedPath + " dubbo registry has losted");
+//                            }
+//                        } catch (Exception e) {
+//                            logger.error("dubbo.registry.address:" + System.getProperty("dubbo.registry.address"), e);
+//                            e.printStackTrace();
+//                        }
+//
+//                    }
+//                }
+//            }, 10000L, 3000L);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -140,20 +140,21 @@ public class DubboBeanConfig {
             serviceConfig.setRegister(true);
             serviceConfig.setSent(true);
             serviceConfig.export();
-        }
-        ReferenceConfig<DispatchService> referenceConfig = new ReferenceConfig<DispatchService>();
-        referenceConfig.setApplication(applicationConfig);
+        } else {
+            ReferenceConfig<DispatchService> referenceConfig = new ReferenceConfig<DispatchService>();
+            referenceConfig.setApplication(applicationConfig);
 //            referenceConfig.setId(inter);
-        referenceConfig.setInterface(model);
+            referenceConfig.setInterface(model);
 //            referenceConfig.setInterface(inter);
-        referenceConfig.setCheck(true);
-        referenceConfig.setProtocol(System.getProperty("dubbo.protocol.name", "dubbo"));
-        referenceConfig.setUrl(System.getProperty("dubbo.consumer.url", "dubbo://127.0.0.1:20880"));
-        referenceConfig.setRegistry(registryConfig);
-        referenceConfig.setScope(Constants.CONSUMER);
-        referenceConfig.setInit(true);
-        referenceConfig.setConsumer(consumerConfig);
-        referenceConfig.setRetries(2);
+            referenceConfig.setCheck(true);
+            referenceConfig.setProtocol(System.getProperty("dubbo.protocol.name", "dubbo"));
+            referenceConfig.setUrl(System.getProperty("dubbo.consumer.url", "dubbo://127.0.0.1:20880"));
+            referenceConfig.setRegistry(registryConfig);
+            referenceConfig.setScope(Constants.CONSUMER);
+            referenceConfig.setInit(true);
+            referenceConfig.setConsumer(consumerConfig);
+            referenceConfig.setRetries(2);
+        }
     }
 
     public static ProtocolConfig createProtocolConfig() {
@@ -162,7 +163,7 @@ public class DubboBeanConfig {
         protocolConfig.setName(System.getProperty("dubbo.protocol.name", "dubbo"));
         protocolConfig.setDispatcher("all");
         protocolConfig.setThreadpool("cached");
-        protocolConfig.setThreads(30);
+        protocolConfig.setThreads(5);
         protocolConfig.setRegister(true);
         protocolConfig.setHost("127.0.0.1");
         protocolConfig.setPort(20880);
@@ -183,7 +184,7 @@ public class DubboBeanConfig {
         providerConfig.setThreadpool("cached");
         providerConfig.setExport(true);
         providerConfig.setRetries(0);
-        providerConfig.setThreads(30);
+        providerConfig.setThreads(5);
         providerConfig.setPayload(52428800);
         providerConfig.setLoadbalance("leastactive");
         return providerConfig;
