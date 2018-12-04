@@ -8,15 +8,6 @@ import org.woo.service.lookup.ServiceLookUp;
  * org.woo.dubbo.DubboServiceLookUp
  */
 public class DubboServiceLookUp extends ServiceLookUp {
-    @Override
-    protected <T> T lookupImpl(String s) {
-        return null;
-    }
-
-    @Override
-    protected <T> T lookupImpl(Class<T> aClass) {
-        return null;
-    }
 
     @Override
     protected <T> T lookupImpl(Class<T> aClass, String s) {

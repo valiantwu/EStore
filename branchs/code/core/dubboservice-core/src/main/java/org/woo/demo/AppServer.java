@@ -46,7 +46,7 @@ public class AppServer extends Thread {
     }
 
     static {
-        CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder().connectString("192.168.0.102:2181").retryPolicy(new RetryNTimes(2147, 1000)).connectionTimeoutMs(5000).sessionTimeoutMs(50000);
+        CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder().connectString("192.168.0.106:2181").retryPolicy(new RetryNTimes(2147, 1000)).connectionTimeoutMs(5000).sessionTimeoutMs(50000);
         client = builder.build();
         client.start();
         try {

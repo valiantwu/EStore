@@ -19,7 +19,7 @@ public class LifeCycleServer {
     }
 
     public static void startup() {
-        IService[] iServices = ServiceConfig.getMsServices();
+        IService[] iServices = SystemServiceConfig.getMsServices();
         for (int i = 0; i < iServices.length; i++) {
             try {
                 iServices[i].startUp();
