@@ -7,4 +7,3 @@ build/dependency-cache/
 build/tmp/compileJava/S
 build/classes/
 /build/
-*.java
